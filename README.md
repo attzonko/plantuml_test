@@ -1,34 +1,5 @@
 # plantuml_test
 
-@startuml mb_class_diagram
-Bus <|-- MailboxIface
+![alternative text](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/plantuml/plantuml-server/master/src/main/webapp/resource/test2diagrams.txt)
 
-class MailboxIface {
-  == Event triggers ==
-  +read_lock()
-  +write_cmd()
-  +write_data_len()
-  +write_exec()
- }
 
-enum Events {
-  LockRead,
-  CmdWrite,
-  DataLenWrite
-  ExecWrite
-}
-
-class StateMachine <<Singleton>> {
-  +process_event()
-}
-
-class Context {
-  +enqueue()
-  +dequeue()
-  -ring_buffer
-}
-
-MailboxIface --> StateMachine
-StateMachine o-- Context
-
-@enduml
